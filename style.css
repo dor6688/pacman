@@ -1,0 +1,329 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+body {
+	background-color: black;
+}
+
+h3 {
+	color: blue;
+}
+
+.slider{
+	font-size: 150%;
+	color: yellow;
+}
+
+.gameStart{
+	padding: 10px 25px;
+	position: relative;
+	border: 3px double yellow;
+	background-color:black;
+	color:yellow;
+	border-radius: 12px;
+	font: 80% 'Press Start 2P',  cursive;
+}
+
+#Game{
+	width: 100%;
+	position: center;
+	font: 100% 'Press Start 2P',  cursive;
+}
+
+#Setting{
+	height: 100%;
+	background-image: url("register_background.png");
+	background-position: center;
+	background-size: 65%;
+	background-repeat: no-repeat;
+	text-align: left;
+	color: white;
+	font: 85% 'Press Start 2P',  cursive;
+}
+
+#countdown{
+	color : red;
+}
+
+#menu {
+	color: white;
+}
+
+#topMenu{
+    width:100%;
+    font: 120% 'Press Start 2P',  cursive;
+}
+#topMenu .left{
+    text-align:left;
+}
+#topMenu .right{
+    text-align:right;
+}
+#topMenu .center{
+	text-align:center;
+}
+
+#downMenu{
+    font: 120% 'Press Start 2P',  cursive;
+}
+
+#leftMenu {
+	color: white;
+	font-size: 100%;
+
+}
+
+#leftMenu button{
+	padding: 10px 25px;
+	position: relative;
+	border: 3px double white;
+	background-color:black;
+	color:white;
+	border-radius: 12px;
+	font: 80% 'Press Start 2P',  cursive;
+}
+
+
+#Login { 
+    /* The image used */
+	background-image: url("login_4.jpg");
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	background-size: 50%;
+	align-items: center;
+	background-position: top;
+	background-repeat: no-repeat;
+	color:white;
+	font: 140% 'Press Start 2P',  cursive;
+}
+
+#Login table{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15%;
+}
+
+
+#Login h3{
+	position: relative;
+	background-color:black;
+	color:white;
+	font-size: 80%;
+
+
+}
+#Login h2{
+	position: relative;
+	background-color:black;
+	color:white;
+
+}
+
+#Login input{
+	padding: 15px 45px;
+	position: relative;
+	border: 3px double white;
+	background-color:transparent;
+	color:white;
+	border-radius: 12px;
+	font: 80% 'Press Start 2P',  cursive;
+
+}
+
+#Login button {
+	padding: 15px 45px;
+	position: relative;
+	border: 3px double white;
+	background-color:black;
+	color:white;
+	border-radius: 12px;
+	font: 100% 'Press Start 2P',  cursive;
+}
+
+.column {
+	float: left;
+	flex: 50%;
+	padding: 10px;
+}
+
+
+
+
+
+#Welcome {
+	background-image: url("welcome_background.jpg");
+	background-size: 80%;
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	position: absolute;
+	width: 99%;
+	height: 90%;
+	background-position: top;
+	background-repeat: no-repeat;
+
+}
+#Welcome button{
+	position: relative;
+    border: 3px double blue;
+	background-color:black;
+	color:blue;
+	border-radius: 12px;
+	padding: 10px 25px 10px 25px;
+	font: 100% 'Press Start 2P',  cursive;
+
+}
+
+#Welcome td{
+	padding: 10px;
+}
+
+#Welcome table{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 24%;
+
+}
+.slider {
+	width: 30%;
+}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  background-color: blue;
+    font: 100% 'Press Start 2P',  cursive;
+    color: white;
+
+
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  transition: 0.3s;
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: yellow;
+    color: black;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: yellow;
+    color: black;
+}
+
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* jquery */ 
+/* Below line is used for online Google font */
+
+ 
+form {
+    padding: 20px;
+    color: #fff;
+    border-radius:4px;
+
+}
+#Register {
+	background-image: url("page_2.gif");
+	background-size: 100%;
+    background-position: bottom;
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	width: 99%;
+	height: 90%;
+	background-repeat: no-repeat;
+	font: 140% 'Press Start 2P',  cursive;
+}
+
+#Register td{
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+	font: 60% 'Press Start 2P',  cursive;
+	color: #888888;
+}
+
+#Register button {
+    margin-bottom: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+	font: 100% 'Press Start 2P',  cursive;
+	text-align: center;
+	position: relative;
+	border: 6px double blue;
+	background-color:black;
+	color:blue;
+	border-radius: 12px;
+	padding: 10px 25px 10px 25px;
+
+}
+
+    input {
+      	height: 25px;
+		line-height: 25px;
+      	background: black;
+      	box-sizing: border-box;
+		font: 100% 'Press Start 2P',  cursive;
+		padding: 15px 45px;
+		position: relative;
+		border: 3px double white;
+		color:white;
+		border-radius: 12px;
+
+	}
+		
+    .error {
+      color: yellow;
+		font: 100% 'Press Start 2P',  cursive;
+
+	}
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #4e49fe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
