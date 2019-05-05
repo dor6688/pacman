@@ -45,7 +45,7 @@ function Start(balls, numberOfGhost) {
     shape.dir = 4; // default direction
     pac_color = "yellow";
     life = 3;
-    audioGame = new Audio('pacman.mp3');
+    audioGame = new Audio('Pacman.mp3');
     audioGame.play();
     document.getElementById("userPlayer").innerText = currentPlayer.username;
     document.getElementById("numberOfBalls").innerText = globalNumberOfBall;
