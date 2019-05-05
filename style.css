@@ -86,7 +86,7 @@ h3 {
 
 #Login { 
     /* The image used */
-	background-image: url("login_4.jpg");
+	background-image: url("login_4.JPG");
 	animation: fadeEffect 1s; /* Fading effect takes 1 second */
 	background-size: 50%;
 	align-items: center;
