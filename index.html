@@ -20,14 +20,35 @@
 </head>
 
 <body>
-<!-- Tab links -->
-<div class="tab">
-    <button class="tablinks" onclick="openPage(event, 'Welcome')" id="defaultOpen"
-            style="display:block">Welcome</button>
-    <button class="tablinks" onclick="openPage(event, 'Register')">Register</button>
-    <button class="tablinks" onclick="openPage(event, 'Login')">Login</button>
-    <button type="button" id="about" class="tablinks" >About</button>
-</div>
+
+<header>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Dor Leventer & Shulamit Glazer</p>
+            <p>We used JQuery for the form validation.</p>
+            <p>The main difficulty was to get to know Canvas element.</p>
+        </div>
+        <script type="text/javascript" src="modal.js"></script>
+    </div>
+
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openPage(event, 'Welcome')" id="defaultOpen"
+                style="display:block">Welcome</button>
+        <button class="tablinks" onclick="openPage(event, 'Register')">Register</button>
+        <button class="tablinks" onclick="openPage(event, 'Login')">Login</button>
+        <button type="button" id="about" class="tablinks" >About</button>
+    </div>
+    <div id="footer">
+        ShulDor Inc. &nbsp;&nbsp;&nbsp;&nbsp; contact us on: glazersh/dorlev@post.bgu.ac.il
+    </div>
+
+</header>
+
+
 
 <!-- Tab content -->
 <div id="Welcome" class="tabcontent">
@@ -297,25 +318,6 @@
 
 </div>
 
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Dor Leventer & Shulamit Glazer</p>
-        <p>We used JQuery for the form validation.</p>
-        <p>The main difficulty was to get to know Canvas element.</p>
-    </div>
-    <script type="text/javascript" src="modal.js"></script>
-</div>
-
-
-<div id="footer">
-    ShulDor Inc. &nbsp;&nbsp;&nbsp;&nbsp; contact us on: glazersh/dorlev@post.bgu.ac.il
-</div>
-
-
-
 <div id="Setting" class="tabcontent">
     <h1>Setting</h1>
     <form id="formGame" name="regis">
@@ -346,7 +348,7 @@
                         UP
                     </td>
                     <td>
-                        <input id="upArrow" type="text"  onkeydown="keyPressed(event,'upArrow')" style="width: 230px"/>
+                        <input id="upArrow" type="text"  onkeyup="keyPressed(event,'upArrow')" style="width: 230px"/>
                     </td>
                 </tr>
                 <tr>
@@ -354,7 +356,7 @@
                         Down
                     </td>
                     <td>
-                        <input id="downArrow" type="text" onkeydown="keyPressed(event,'downArrow')" style="width: 230px"/>
+                        <input id="downArrow" type="text" onkeyup="keyPressed(event,'downArrow')" style="width: 230px"/>
                     </td>
                 </tr>
                 <tr>
@@ -362,7 +364,7 @@
                         Left
                     </td>
                     <td>
-                        <input id="leftArrow" type="text" onkeydown="keyPressed(event,'leftArrow')" style="width: 230px"/>
+                        <input id="leftArrow" type="text" onkeyup="keyPressed(event,'leftArrow')" style="width: 230px"/>
                     </td>
                 </tr>
                 <tr>
@@ -370,7 +372,7 @@
                         Right
                     </td>
                     <td>
-                        <input id="rightArrow" type="text" onkeydown="keyPressed(event,'rightArrow')" style="width: 230px"/>
+                        <input id="rightArrow" type="text" onkeyup="keyPressed(event,'rightArrow')" style="width: 230px"/>
                     </td>
                 </tr>
             </table>

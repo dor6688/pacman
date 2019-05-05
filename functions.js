@@ -1177,7 +1177,7 @@ function UpdatePosition() {
         console.log("pacman eat bonus !");
     }
     if(board[shape.i][shape.j] === 6){
-        //isEat();
+        isEat();
         console.log("pacman eat g1 !");
     }
     if(board[shape.i][shape.j] === 7){
