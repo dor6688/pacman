@@ -1056,10 +1056,8 @@ function isEat() {
  * Update the position of the Bonus
  */
 function UpdateBonusPosition() {
-    if(bonus.eat !== 6 && bonus.eat !== 7 && bonus.eat !== 8) {
+    if (bonus.eat !== 6 && bonus.eat !== 7 && bonus.eat !== 8) {
         board[bonus.i][bonus.j] = bonus.eat;
-    }else{
-        let x =4;
     }
     bonus.lastMove[0] = bonus.i;
     bonus.lastMove[1] = bonus.j;
@@ -1105,7 +1103,6 @@ function UpdateBonusPosition() {
         bonus.eat = 0;
         score += 50;
         board[bonus.i][bonus.j] = 0;
-        console.log("bonus eat !");
         clearInterval(intervalBonus);
     }
     board[bonus.i][bonus.j] = -2;
@@ -1154,24 +1151,20 @@ function UpdatePosition() {
     }
 
     addScore(board[shape.i][shape.j]);
-
-    if (board[shape.i][shape.j] === -2) {
-        console.log("pacman eat bonus !");
-    }
     if (board[shape.i][shape.j] === 6) {
         isEat();
         clearGhost();
-        console.log("pacman eat g1 !");
+
     }
     if (board[shape.i][shape.j] === 7) {
         isEat();
         clearGhost();
-        console.log("pacman eat g2 !");
+
     }
     if (board[shape.i][shape.j] === 8) {
         isEat();
         clearGhost();
-        console.log("pacman eat g3 !");
+
     }
     board[shape.i][shape.j] = 5;
 
