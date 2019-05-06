@@ -28,8 +28,7 @@ let keyLeft;
 let keyRight;
 let gameTime;
 let currentPlayer;
-let audioGame;
-let needChange = false;
+let audioGame = new Audio('Pacman.mp3');
 let counter = 0;
 
 let mapUsers = [];
@@ -45,8 +44,6 @@ function Start(balls, numberOfGhost) {
     shape.dir = 4; // default direction
     pac_color = "yellow";
     life = 3;
-    audioGame = new Audio('Pacman.mp3');
-    audioGame.play();
     document.getElementById("userPlayer").innerText = currentPlayer.username;
     document.getElementById("numberOfBalls").innerText = globalNumberOfBall;
     document.getElementById("numberOfGhost").innerText = globalNumberOfGhost;
@@ -477,6 +474,7 @@ function clearAllInterval(){
  */
 function stopGame(str) {
     audioGame.pause();
+    audioGame.currentTime = 0;
     let endGameMusic = new Audio('pacman_end.wav');
     endGameMusic.play();
     clearAllInterval();
@@ -506,7 +504,7 @@ function isBorder(center, sizeOfBox, i, j){
 }
 
 function isOver(){
-    return life === 0 || score > 700;
+    return life === 0 || score > 700 || overBalls();
 }
 
 function Draw() {
@@ -514,8 +512,6 @@ function Draw() {
     let img;
 
     document.getElementById("score").innerHTML = score; // write to the screen the player's score
-    if(!isOver()) {
-
         context.clearRect(0, 0, canvas.width, canvas.height); //clean board
 
         // check if life equal 0 and stop the game
@@ -620,13 +616,13 @@ function Draw() {
                 }
             }
         }
-    }
-    else{
+
+    if (isOver()){
         if(life===0){
             stopGame("You Lost!");
         }
-        if(score > 700){
-            stopGame("points");
+        if(overBalls()){
+            stopGame("You Win !!, No more balls");
         }
     }
 
@@ -634,6 +630,7 @@ function Draw() {
 }
 
 function getReady() {
+    audioGame.play();
     let now = new Date();
     let millisec = now-gameTime;
     let sec = 4 - Math.floor(millisec/1000);
@@ -1025,6 +1022,7 @@ function UpdateGhostPosition() {
 
 function isEat() {
     audioGame.pause();
+    audioGame.currentTime = 0;
     let dead = new Audio('pacman_death.wav');
     dead.play();
     audioGame.play();
@@ -1062,17 +1060,6 @@ function isEat() {
 }
 
 /**
- * Check if the cell isn't wall or ghost
- * @param row
- * @param col
- * @returns {boolean}
- */
-function notGhostPacman(row, col){
-    return board[row][col] !== 4 && board[row][col] !== 6
-        && board[row][col] !== 7 && board[row][col] !== 8;
-}
-
-/**
  * Update the position of the Bonus
  */
 function UpdateBonusPosition() {
@@ -1084,7 +1071,7 @@ function UpdateBonusPosition() {
         let rand = Math.random();
         if (rand < 0.25) {
             // i++
-            if (bonus.i + 1 < 20 && notGhostPacman(bonus.i+1, bonus.j)) {
+            if (bonus.i + 1 < 20 && board[bonus.i + 1][bonus.j] !== 4) {
                 if (bonus.lastMove[0] !== bonus.i + 1 || bonus.lastMove[1] !== bonus.j) {
                     bonus.i++;
                     break;
@@ -1092,7 +1079,7 @@ function UpdateBonusPosition() {
             }
         } else if (0.25 <= rand && rand < 0.5) {
             // i--
-            if (bonus.i - 1 >= 0 &&notGhostPacman(bonus.i-1, bonus.j)) {
+            if (bonus.i - 1 >= 0 && board[bonus.i - 1][bonus.j] !== 4 ) {
                 if (bonus.lastMove[0] !== bonus.i - 1 || bonus.lastMove[1] !== bonus.j) {
                     bonus.i--;
                     break;
@@ -1100,7 +1087,7 @@ function UpdateBonusPosition() {
             }
         } else if (0.5 <= rand && rand < 0.75) {
             // j++
-            if (bonus.j + 1 < 20 && notGhostPacman(bonus.i, bonus.j + 1)) {
+            if (bonus.j + 1 < 20 && board[bonus.i][bonus.j + 1] !== 4) {
                 if (bonus.lastMove[0] !== bonus.i || bonus.lastMove[1] !== bonus.j + 1) {
                     bonus.j++;
                     break;
@@ -1108,7 +1095,7 @@ function UpdateBonusPosition() {
             }
         } else {
             //j--
-            if (bonus.j - 1 >= 0 && notGhostPacman(bonus.i, bonus.j - 1)) {
+            if (bonus.j - 1 >= 0 && board[bonus.i][bonus.j - 1] !== 4) {
                 if (bonus.lastMove[0] !== bonus.i || bonus.lastMove[1] !== bonus.j - 1) {
                     bonus.j--;
                     break;
@@ -1117,6 +1104,7 @@ function UpdateBonusPosition() {
         }
     }
     bonus.eat = board[bonus.i][bonus.j];
+
     if(bonus.eat === 5 ) {
         bonus.eat = 0;
         score += 50;
@@ -1194,6 +1182,7 @@ function UpdatePosition() {
     board[shape.i][shape.j] = 5;
 
     Draw();
+
 }
 
 function clearGhost(){
@@ -1204,6 +1193,17 @@ function clearGhost(){
             }
         }
     }
+}
+
+function overBalls() {
+    for(let i = 0; i<board.length;i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            if(board[i][j] === 1 || board[i][j] === 2 || board[i][j] === 3){
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 /**
@@ -1223,6 +1223,7 @@ function addScore(type){
     if (type === -2){
         score += 50;
         board[bonus.i][bonus.j] = 0;
+        clearInterval(intervalBonus);
     }
 }
 
@@ -1233,6 +1234,9 @@ function addScore(type){
  * @param pageName
  */
 function openPage(evt, pageName) {
+    clearAllInterval();
+    audioGame.pause();
+    audioGame.currentTime = 0;
     // Declare all variables
     let i, tabcontent, tablinks;
 
@@ -1381,6 +1385,8 @@ function checkUser(event) {
 
 function changeSetting(){
     clearAllInterval();
+    audioGame.pause();
+    audioGame.currentTime = 0;
     openPage(event, 'Setting');
 }
 
@@ -1393,6 +1399,7 @@ function changeSetting(){
  */
 function startNewGame() {
     audioGame.pause();
+    audioGame.currentTime = 0;
     document.getElementById("pacman_life1").style.display = "block";
     document.getElementById("pacman_life2").style.display = "block";
     document.getElementById("pacman_life3").style.display = "block";
