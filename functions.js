@@ -33,8 +33,9 @@ let counter = 0;
 
 let mapUsers = [];
 addAdmin();
-function addAdmin(){
-    mapUsers.push({username:"a", password:"a", fname:"a", lname:"a", email:"a@a", dateBirth:"10/10/10"});
+
+function addAdmin() {
+    mapUsers.push({username: "a", password: "a", fname: "a", lname: "a", email: "a@a", dateBirth: "10/10/10"});
 }
 
 function Start(balls, numberOfGhost) {
@@ -48,8 +49,6 @@ function Start(balls, numberOfGhost) {
     document.getElementById("numberOfBalls").innerText = globalNumberOfBall;
     document.getElementById("numberOfGhost").innerText = globalNumberOfGhost;
     document.getElementById("timeOfGame").innerText = globalTime;
-
-
 
 
     let food_remain = balls;
@@ -89,7 +88,7 @@ function Start(balls, numberOfGhost) {
     }
     // initialize pacman position
     let emptyCell = findRandomEmptyCell(board);
-    while(emptyCell[0] < 3 || emptyCell[0] > 17 || emptyCell[1] < 3 || emptyCell[1] > 17){
+    while (emptyCell[0] < 3 || emptyCell[0] > 17 || emptyCell[1] < 3 || emptyCell[1] > 17) {
         emptyCell = findRandomEmptyCell(board);
     }
     shape.i = emptyCell[0];
@@ -98,7 +97,7 @@ function Start(balls, numberOfGhost) {
     bonus.i = 20;
     bonus.j = 19;
     bonus.eat = 0;
-    bonus.lastMove = [bonus.i , bonus.j];
+    bonus.lastMove = [bonus.i, bonus.j];
     board[bonus.i][bonus.j] = -2;
 
     while (food_point_1 > 0) {
@@ -118,9 +117,6 @@ function Start(balls, numberOfGhost) {
     }
 
 
-
-
-
     addEventListener("keydown", function (e) {
         keysDown[e.key] = true;
     }, false);
@@ -129,10 +125,11 @@ function Start(balls, numberOfGhost) {
     }, false);
 
     counter++;
-    if(counter === 1) {
+    if (counter === 1) {
         intervalReady = setInterval(getReady, 1000);
     }
 }
+
 /**
  * Build the board of the game
  */
@@ -361,7 +358,6 @@ function buildWalls(board) {
     board[12][9] = -1;
 
 
-
 }
 
 /**
@@ -369,11 +365,11 @@ function buildWalls(board) {
  * @param {[i,j]} board
  */
 function findRandomEmptyCell(board) {
-    let i = Math.floor((Math.random() * 21) );
-    let j = Math.floor((Math.random() * 20) );
-    while ( board[i][j] !== 0) {
-        i = Math.floor((Math.random() * 21) );
-        j = Math.floor((Math.random() * 20) );
+    let i = Math.floor((Math.random() * 21));
+    let j = Math.floor((Math.random() * 20));
+    while (board[i][j] !== 0) {
+        i = Math.floor((Math.random() * 21));
+        j = Math.floor((Math.random() * 20));
     }
     return [i, j];
 }
@@ -407,7 +403,7 @@ function GetKeyPressed() {
  * @param toX
  * @param toY
  */
-function drawWalls(fromX, fromY, toX, toY){
+function drawWalls(fromX, fromY, toX, toY) {
     context.beginPath();
     context.moveTo(fromX, fromY);
     context.lineTo(toX, toY);
@@ -432,7 +428,7 @@ function drawWalls(fromX, fromY, toX, toY){
  * @param startEye
  * @param endEye
  */
-function drawPacmanDirection(xPacman, yPacman, raduisPacman, startPacman, endPacman, xMouse, yMouse, xEye, yEye, radiusEye, startEye, endEye ){
+function drawPacmanDirection(xPacman, yPacman, raduisPacman, startPacman, endPacman, xMouse, yMouse, xEye, yEye, radiusEye, startEye, endEye) {
     context.beginPath();
     context.arc(xPacman, yPacman, raduisPacman, startPacman, endPacman); // half circle
     context.lineTo(xMouse, yMouse);
@@ -450,18 +446,18 @@ function drawPacmanDirection(xPacman, yPacman, raduisPacman, startPacman, endPac
  * @param y
  * @param radius
  * @param start
- * @param end     
+ * @param end
  * @param color - Each color has a different score
  */
-function drawBalls(x,y,radius,start,end,color){
-      context.beginPath();
-      context.arc(x, y, radius, start, end); // circ
-      context.fillStyle = color; //color
-      context.fill();
+function drawBalls(x, y, radius, start, end, color) {
+    context.beginPath();
+    context.arc(x, y, radius, start, end); // circ
+    context.fillStyle = color; //color
+    context.fill();
 }
 
 
-function clearAllInterval(){
+function clearAllInterval() {
     window.clearInterval(interval);
     window.clearInterval(intervalGhost);
     window.clearInterval(intervalBonus);
@@ -488,22 +484,22 @@ function stopGame(str) {
  * @param i
  * @param j
  */
-function isBorder(center, sizeOfBox, i, j){
-    if(i === 0 && (j < 6 || j > 12)){
-        drawWalls(center.x + 1,center.y,center.x + 1,center.y + sizeOfBox);
+function isBorder(center, sizeOfBox, i, j) {
+    if (i === 0 && (j < 6 || j > 12)) {
+        drawWalls(center.x + 1, center.y, center.x + 1, center.y + sizeOfBox);
     }
-    if(i === 20 && (j < 6 || j > 12)){
-        drawWalls(center.x + sizeOfBox-1,center.y,center.x + sizeOfBox-1,center.y + sizeOfBox);
+    if (i === 20 && (j < 6 || j > 12)) {
+        drawWalls(center.x + sizeOfBox - 1, center.y, center.x + sizeOfBox - 1, center.y + sizeOfBox);
     }
-    if(j === 0){
-        drawWalls(center.x,center.y + 1,center.x + sizeOfBox,center.y+ 1);
+    if (j === 0) {
+        drawWalls(center.x, center.y + 1, center.x + sizeOfBox, center.y + 1);
     }
-    if(j === 19){
-        drawWalls(center.x,center.y + sizeOfBox - 1,center.x + sizeOfBox,center.y + sizeOfBox - 1);
+    if (j === 19) {
+        drawWalls(center.x, center.y + sizeOfBox - 1, center.x + sizeOfBox, center.y + sizeOfBox - 1);
     }
 }
 
-function isOver(){
+function isOver() {
     return life === 0 || score > 700 || overBalls();
 }
 
@@ -512,116 +508,116 @@ function Draw() {
     let img;
 
     document.getElementById("score").innerHTML = score; // write to the screen the player's score
-        context.clearRect(0, 0, canvas.width, canvas.height); //clean board
+    context.clearRect(0, 0, canvas.width, canvas.height); //clean board
 
-        // check if life equal 0 and stop the game
-        for (let i = 0; i < 21; i++) {
-            for (let j = 0; j < 20; j++) {
-                let center = {};
-                center.x = i * sizeOfBox;
-                center.y = j * sizeOfBox;
-                // check if this cell has a border
-                isBorder(center, sizeOfBox, i, j);
-                switch (board[i][j]) {
-                    // 5 points
-                    case 1: {
-                        drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 3, 0, 2 * Math.PI, "yellow");
-                        break;
-                    }
-                    // 15 points
-                    case 2: {
-                        drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 5, 0, 2 * Math.PI, "red");
-                        break;
-                    }
-                    // 25 points
-                    case 3: {
-                        drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 6, 0, 2 * Math.PI, "green");
-                        break;
-                    }
-                    // walls
-                    case 4: {
-                        if (i + 1 < 21) {
-                            if (board[i + 1][j] !== 4) {
-                                drawWalls(center.x + sizeOfBox, center.y, center.x + sizeOfBox, center.y + sizeOfBox);
-                            }
+    // check if life equal 0 and stop the game
+    for (let i = 0; i < 21; i++) {
+        for (let j = 0; j < 20; j++) {
+            let center = {};
+            center.x = i * sizeOfBox;
+            center.y = j * sizeOfBox;
+            // check if this cell has a border
+            isBorder(center, sizeOfBox, i, j);
+            switch (board[i][j]) {
+                // 5 points
+                case 1: {
+                    drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 3, 0, 2 * Math.PI, "yellow");
+                    break;
+                }
+                // 15 points
+                case 2: {
+                    drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 5, 0, 2 * Math.PI, "red");
+                    break;
+                }
+                // 25 points
+                case 3: {
+                    drawBalls(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 6, 0, 2 * Math.PI, "green");
+                    break;
+                }
+                // walls
+                case 4: {
+                    if (i + 1 < 21) {
+                        if (board[i + 1][j] !== 4) {
+                            drawWalls(center.x + sizeOfBox, center.y, center.x + sizeOfBox, center.y + sizeOfBox);
                         }
-                        if (j + 1 < 21) {
-                            if (board[i][j + 1] !== 4) {
-                                drawWalls(center.x, center.y + sizeOfBox, center.x + sizeOfBox, center.y + sizeOfBox);
-                            }
+                    }
+                    if (j + 1 < 21) {
+                        if (board[i][j + 1] !== 4) {
+                            drawWalls(center.x, center.y + sizeOfBox, center.x + sizeOfBox, center.y + sizeOfBox);
                         }
-                        if (i - 1 >= 0) {
-                            if (board[i - 1][j] !== 4) {
-                                drawWalls(center.x, center.y, center.x, center.y + sizeOfBox);
-                            }
+                    }
+                    if (i - 1 >= 0) {
+                        if (board[i - 1][j] !== 4) {
+                            drawWalls(center.x, center.y, center.x, center.y + sizeOfBox);
                         }
-                        if (j - 1 >= 0) {
-                            if (board[i][j - 1] !== 4) {
-                                drawWalls(center.x, center.y, center.x + sizeOfBox, center.y);
-                            }
+                    }
+                    if (j - 1 >= 0) {
+                        if (board[i][j - 1] !== 4) {
+                            drawWalls(center.x, center.y, center.x + sizeOfBox, center.y);
                         }
-                        break;
                     }
-                    // pacman
-                    case 5: {
-                        if (shape.dir === 1) {
-                            drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 1.65 * Math.PI, 1.35 * Math.PI,
-                                center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 8, center.y + 15, 1.3, 0, 2 * Math.PI);
-                        } else if (shape.dir === 2) {
-                            drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 0.65 * Math.PI, 0.35 * Math.PI,
-                                center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 17, center.y + 12, 1.3, 0, 2 * Math.PI);
-                        } else if (shape.dir === 3) {
-                            drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 1.15 * Math.PI, 0.85 * Math.PI,
-                                center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 15, center.y + 7, 1.3, 0, 2 * Math.PI);
-                        } else if (shape.dir === 4) {
-                            drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 0.15 * Math.PI, 1.85 * Math.PI,
-                                center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 12, center.y + 7, 1.3, 0, 2 * Math.PI);
-                        }
-                        break;
+                    break;
+                }
+                // pacman
+                case 5: {
+                    if (shape.dir === 1) {
+                        drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 1.65 * Math.PI, 1.35 * Math.PI,
+                            center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 8, center.y + 15, 1.3, 0, 2 * Math.PI);
+                    } else if (shape.dir === 2) {
+                        drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 0.65 * Math.PI, 0.35 * Math.PI,
+                            center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 17, center.y + 12, 1.3, 0, 2 * Math.PI);
+                    } else if (shape.dir === 3) {
+                        drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 1.15 * Math.PI, 0.85 * Math.PI,
+                            center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 15, center.y + 7, 1.3, 0, 2 * Math.PI);
+                    } else if (shape.dir === 4) {
+                        drawPacmanDirection(center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, 10, 0.15 * Math.PI, 1.85 * Math.PI,
+                            center.x + sizeOfBox / 2, center.y + sizeOfBox / 2, center.x + 12, center.y + 7, 1.3, 0, 2 * Math.PI);
                     }
-                    // ghost 1
-                    case 6: {
-                        img = document.getElementById("g1");
-                        context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
-                        break;
-                    }
-                    // ghost 2
-                    case 7: {
-                        img = document.getElementById("g2");
-                        context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
-                        break;
-                    }
-                    // ghost 3
-                    case 8: {
-                        img = document.getElementById("g3");
-                        context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
-                        break;
-                    }
-                    // the white entry
-                    case 9: {
-                        context.beginPath();
-                        context.moveTo(center.x, center.y + sizeOfBox / 2);
-                        context.lineTo(center.x + sizeOfBox, center.y + sizeOfBox / 2);
-                        context.strokeStyle = "white"; //color
-                        context.lineWidth = 3;
-                        context.stroke();
-                        break;
-                    }
-                    // bonus
-                    case -2: {
-                        img = document.getElementById("cherry");
-                        context.drawImage(img, center.x + 2, center.y + 2, canvas.width * 0.8 / board.length, canvas.width * 0.8 / board.length);
-                        break;
-                    }
+                    break;
+                }
+                // ghost 1
+                case 6: {
+                    img = document.getElementById("g1");
+                    context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
+                    break;
+                }
+                // ghost 2
+                case 7: {
+                    img = document.getElementById("g2");
+                    context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
+                    break;
+                }
+                // ghost 3
+                case 8: {
+                    img = document.getElementById("g3");
+                    context.drawImage(img, center.x, center.y, canvas.width / board.length, canvas.width / board.length);
+                    break;
+                }
+                // the white entry
+                case 9: {
+                    context.beginPath();
+                    context.moveTo(center.x, center.y + sizeOfBox / 2);
+                    context.lineTo(center.x + sizeOfBox, center.y + sizeOfBox / 2);
+                    context.strokeStyle = "white"; //color
+                    context.lineWidth = 3;
+                    context.stroke();
+                    break;
+                }
+                // bonus
+                case -2: {
+                    img = document.getElementById("cherry");
+                    context.drawImage(img, center.x + 2, center.y + 2, canvas.width * 0.8 / board.length, canvas.width * 0.8 / board.length);
+                    break;
                 }
             }
         }
+    }
 
-    if (isOver()){
-        if(life===0){
+    if (isOver()) {
+        if (life === 0) {
             stopGame("You Lost!");
         }
-        if(overBalls()){
+        if (overBalls()) {
             stopGame("You Win !!, No more balls");
         }
     }
@@ -632,18 +628,18 @@ function Draw() {
 function getReady() {
     audioGame.play();
     let now = new Date();
-    let millisec = now-gameTime;
-    let sec = 4 - Math.floor(millisec/1000);
+    let millisec = now - gameTime;
+    let sec = 4 - Math.floor(millisec / 1000);
     Draw();
     context.font = "100px 'Press Start 2P',  cursive";
-    context.fillText(sec, canvas.width/2-45, canvas.height/2);
-    if(sec === 0){
+    context.fillText(sec, canvas.width / 2 - 45, canvas.height / 2);
+    if (sec === 0) {
         clearInterval(intervalReady);
         interval = setInterval(UpdatePosition, 150);
         intervalGhost = setInterval(UpdateGhostPosition, 250);
         intervalBonus = setInterval(UpdateBonusPosition, 250);
         startTime(globalTime);
-        document.getElementById('reset').onclick=startNewGame;
+        document.getElementById('reset').onclick = startNewGame;
         counter = 0;
     }
 }
@@ -685,8 +681,7 @@ function nextMove(iG, jG, iP, jP) {
                 pos4.i = ei + 1;
                 pos4.j = ej;
                 queue.push(pos4);
-            }
-            else {
+            } else {
                 let side = Math.random();
                 if (side > 0.5) {
                     pos2.i = ei;
@@ -809,8 +804,7 @@ function nextMove(iG, jG, iP, jP) {
                     queue.push(pos4);
                 }
             }
-        }
-        else {
+        } else {
             pos1.i = ei;
             pos1.j = ej + 1;
             queue.push(pos1);
@@ -864,7 +858,6 @@ function nextMove(iG, jG, iP, jP) {
 }
 
 
-
 function UpdateGhostPosition() {
     board[enemy.i][enemy.j] = enemy.eat;
 
@@ -902,7 +895,7 @@ function UpdateGhostPosition() {
             }
         }
     }
-    if(board[enemy.i][enemy.j] === 7 || board[enemy.i][enemy.j] === 8 || board[enemy.i][enemy.j] === -2){
+    if (board[enemy.i][enemy.j] === 7 || board[enemy.i][enemy.j] === 8 || board[enemy.i][enemy.j] === -2) {
         board[enemy.i][enemy.j] = 0;
     }
     enemy.eat = board[enemy.i][enemy.j];
@@ -932,7 +925,7 @@ function UpdateGhostPosition() {
                     break;
                 }
 
-                if (enemy2.lastMove[0]!== next.i || enemy2.lastMove[1] !== next.j) {
+                if (enemy2.lastMove[0] !== next.i || enemy2.lastMove[1] !== next.j) {
                     enemy2.lastMove[0] = enemy2.i;
                     enemy2.lastMove[1] = enemy2.j;
                     enemy2.i = next.i;
@@ -941,7 +934,7 @@ function UpdateGhostPosition() {
                 }
             }
         }
-        if(board[enemy2.i][enemy2.j] === 6 || board[enemy2.i][enemy2.j] === 8 || board[enemy2.i][enemy2.j] === -2){
+        if (board[enemy2.i][enemy2.j] === 6 || board[enemy2.i][enemy2.j] === 8 || board[enemy2.i][enemy2.j] === -2) {
             board[enemy2.i][enemy2.j] = 0;
         }
         enemy2.eat = board[enemy2.i][enemy2.j];
@@ -983,7 +976,7 @@ function UpdateGhostPosition() {
                 }
             }
         }
-        if(board[enemy3.i][enemy3.j] === 6 || board[enemy3.i][enemy3.j] === 7 || board[enemy3.i][enemy3.j] === -2){
+        if (board[enemy3.i][enemy3.j] === 6 || board[enemy3.i][enemy3.j] === 7 || board[enemy3.i][enemy3.j] === -2) {
             board[enemy3.i][enemy3.j] = 0;
         }
         enemy3.eat = board[enemy3.i][enemy3.j];
@@ -1007,7 +1000,7 @@ function UpdateGhostPosition() {
             flag = true;
         }
     }
-    if (flag){
+    if (flag) {
         isEat();
     }
 
@@ -1028,7 +1021,7 @@ function isEat() {
     audioGame.play();
     board[shape.i][shape.j] = 0;
     let emptyCell = findRandomEmptyCell(board);
-    while (emptyCell[0] < 3 || emptyCell[0] > 17 || emptyCell[1] < 3 || emptyCell[1] > 17){
+    while (emptyCell[0] < 3 || emptyCell[0] > 17 || emptyCell[1] < 3 || emptyCell[1] > 17) {
         emptyCell = findRandomEmptyCell(board);
     }
     shape.i = emptyCell[0];
@@ -1048,13 +1041,13 @@ function isEat() {
     }
     score -= 10;
     life -= 1;
-    if(life === 2) {
+    if (life === 2) {
         document.getElementById("pacman_life3").style.display = "none";
     }
-    if(life === 1){
+    if (life === 1) {
         document.getElementById("pacman_life2").style.display = "none";
     }
-    if(life === 0){
+    if (life === 0) {
         document.getElementById("pacman_life1").style.display = "none";
     }
 }
@@ -1079,7 +1072,7 @@ function UpdateBonusPosition() {
             }
         } else if (0.25 <= rand && rand < 0.5) {
             // i--
-            if (bonus.i - 1 >= 0 && board[bonus.i - 1][bonus.j] !== 4 ) {
+            if (bonus.i - 1 >= 0 && board[bonus.i - 1][bonus.j] !== 4) {
                 if (bonus.lastMove[0] !== bonus.i - 1 || bonus.lastMove[1] !== bonus.j) {
                     bonus.i--;
                     break;
@@ -1105,7 +1098,7 @@ function UpdateBonusPosition() {
     }
     bonus.eat = board[bonus.i][bonus.j];
 
-    if(bonus.eat === 5 ) {
+    if (bonus.eat === 5) {
         bonus.eat = 0;
         score += 50;
         board[bonus.i][bonus.j] = 0;
@@ -1123,34 +1116,32 @@ function UpdatePosition() {
     // get direction from the key pressed
     let direction = GetKeyPressed();
     switch (direction) {
-        case 1:{
+        case 1: {
             if (shape.j > 0 && board[shape.i][shape.j - 1] !== 4 && board[shape.i][shape.j - 1] !== 9) {
                 shape.j--;
             }
             break;
         }
-        case 2:{
+        case 2: {
             if (shape.j < 19 && board[shape.i][shape.j + 1] !== 4 && board[shape.i][shape.j + 1] !== 9) {
                 shape.j++;
             }
             break;
         }
-        case 3:{
+        case 3: {
             if (shape.i === 0 && shape.j === 9) {
                 shape.i = 20;
-            }
-            else {
+            } else {
                 if (shape.i > 0 && board[shape.i - 1][shape.j] !== 4 && board[shape.i - 1][shape.j] !== 9) {
                     shape.i--;
                 }
             }
             break;
         }
-        case 4:{
+        case 4: {
             if (shape.i === 20 && shape.j === 9) {
                 shape.i = 0;
-            }
-            else {
+            } else {
                 if (shape.i < 20 && board[shape.i + 1][shape.j] !== 4 && board[shape.i + 1][shape.j] !== 9) {
                     shape.i++;
                 }
@@ -1161,20 +1152,20 @@ function UpdatePosition() {
 
     addScore(board[shape.i][shape.j]);
 
-    if(board[shape.i][shape.j] === -2){
+    if (board[shape.i][shape.j] === -2) {
         console.log("pacman eat bonus !");
     }
-    if(board[shape.i][shape.j] === 6){
+    if (board[shape.i][shape.j] === 6) {
         isEat();
         clearGhost();
         console.log("pacman eat g1 !");
     }
-    if(board[shape.i][shape.j] === 7){
+    if (board[shape.i][shape.j] === 7) {
         isEat();
         clearGhost();
         console.log("pacman eat g2 !");
     }
-    if(board[shape.i][shape.j] === 8){
+    if (board[shape.i][shape.j] === 8) {
         isEat();
         clearGhost();
         console.log("pacman eat g3 !");
@@ -1185,10 +1176,10 @@ function UpdatePosition() {
 
 }
 
-function clearGhost(){
-    for(let i = 0; i<board.length;i++){
-        for(let j=0;j<board[0].length;j++){
-            if(board[i][j] === 6 || board[i][j] === 7 || board[i][j] === 8){
+function clearGhost() {
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            if (board[i][j] === 6 || board[i][j] === 7 || board[i][j] === 8) {
                 board[i][j] = 0;
             }
         }
@@ -1196,9 +1187,9 @@ function clearGhost(){
 }
 
 function overBalls() {
-    for(let i = 0; i<board.length;i++) {
+    for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[0].length; j++) {
-            if(board[i][j] === 1 || board[i][j] === 2 || board[i][j] === 3){
+            if (board[i][j] === 1 || board[i][j] === 2 || board[i][j] === 3) {
                 return false;
             }
         }
@@ -1210,7 +1201,7 @@ function overBalls() {
  * get type of ball and add it to score
  * @param type
  */
-function addScore(type){
+function addScore(type) {
     if (type === 1) {
         score += 5;
     }
@@ -1220,7 +1211,7 @@ function addScore(type){
     if (type === 3) {
         score += 25;
     }
-    if (type === -2){
+    if (type === -2) {
         score += 50;
         board[bonus.i][bonus.j] = 0;
         clearInterval(intervalBonus);
@@ -1270,7 +1261,7 @@ function detailValidationNewUser(event) {
     let firstName = document.getElementById("firstname").value;
     let lastName = document.getElementById("lastname").value;
     let userEmail = document.getElementById("email").value;
-    let birthDate = document.getElementById("DOBDay").value+"/"+document.getElementById("DOBMonth").value+"/"+document.getElementById("DOBYear").value;
+    let birthDate = document.getElementById("DOBDay").value + "/" + document.getElementById("DOBMonth").value + "/" + document.getElementById("DOBYear").value;
 
 
     if ($('form[name=\'registration\']').valid()) {
@@ -1336,9 +1327,9 @@ function startTime(time) {
         timeleft -= 1;
         if (timeleft <= 0) {
             let msg;
-            if(score < 150){
-                msg = "You can do better "+score;
-            }else{
+            if (score < 150) {
+                msg = "You can do better " + score;
+            } else {
                 msg = "We have a winner";
             }
             document.getElementById("countdown").innerHTML = "Finished";
@@ -1354,9 +1345,9 @@ function startTime(time) {
  * @param password
  * @returns {boolean}
  */
-function checkUserPassword(username, password){
-    for(let i=0; i<mapUsers.length;i++){
-        if(mapUsers[i].username === username && mapUsers[i].password === password){
+function checkUserPassword(username, password) {
+    for (let i = 0; i < mapUsers.length; i++) {
+        if (mapUsers[i].username === username && mapUsers[i].password === password) {
             currentPlayer = mapUsers[i];
             return true;
         }
@@ -1371,7 +1362,7 @@ function checkUserPassword(username, password){
 function checkUser(event) {
     let userName = document.getElementById("userName_Login").value;
     let userPassword = document.getElementById("userPassword_Login").value;
-    if (checkUserPassword(userName,userPassword)) {
+    if (checkUserPassword(userName, userPassword)) {
         // clear the fields
         document.getElementById("userName_Login").value = "";
         document.getElementById("userPassword_Login").value = "";
@@ -1383,7 +1374,7 @@ function checkUser(event) {
     }
 }
 
-function changeSetting(){
+function changeSetting() {
     clearAllInterval();
     audioGame.pause();
     audioGame.currentTime = 0;
@@ -1447,11 +1438,12 @@ function updateSettings() {
     Start(globalNumberOfBall, globalNumberOfGhost);
     openPage(event, 'Game');
 }
+
 //******* jquery **********
 // Wait for the DOM to be ready
 
 $(window).bind("load", function () {
-    var datepicker = new ej.calendars.DatePicker({ width: "100%", format:'dd-MM-yyyy' ,cssClass:"style"});
+    var datepicker = new ej.calendars.DatePicker({width: "100%", format: 'dd-MM-yyyy', cssClass: "style"});
     datepicker.appendTo('#datepicker');
 
     jQuery.validator.addMethod("passwordCheck",
@@ -1504,7 +1496,7 @@ $(window).bind("load", function () {
                 passwordCheck: true
             },
 
-            datepicker:{
+            datepicker: {
                 required: true
             }
         },
@@ -1525,7 +1517,7 @@ $(window).bind("load", function () {
                 passwordCheck: "password must contain letters and numbers"
             },
             email: "Please enter a valid email address",
-            datepicker:"Please enter a Birth  date"
+            datepicker: "Please enter a Birth  date"
         },
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
