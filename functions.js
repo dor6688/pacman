@@ -1056,8 +1056,11 @@ function isEat() {
  * Update the position of the Bonus
  */
 function UpdateBonusPosition() {
-
-    board[bonus.i][bonus.j] = bonus.eat;
+    if(bonus.eat !== 6 && bonus.eat !== 7 && bonus.eat !== 8) {
+        board[bonus.i][bonus.j] = bonus.eat;
+    }else{
+        let x =4;
+    }
     bonus.lastMove[0] = bonus.i;
     bonus.lastMove[1] = bonus.j;
     while (true) {
