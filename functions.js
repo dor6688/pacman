@@ -29,7 +29,7 @@ let keyRight;
 let gameTime;
 let currentPlayer;
 let audioGame;
-
+let needChange = false;
 let counter = 0;
 
 let mapUsers = [];
@@ -1178,19 +1178,32 @@ function UpdatePosition() {
     }
     if(board[shape.i][shape.j] === 6){
         isEat();
+        clearGhost();
         console.log("pacman eat g1 !");
     }
     if(board[shape.i][shape.j] === 7){
-        //isEat();
+        isEat();
+        clearGhost();
         console.log("pacman eat g2 !");
     }
     if(board[shape.i][shape.j] === 8){
-        //isEat();
+        isEat();
+        clearGhost();
         console.log("pacman eat g3 !");
     }
     board[shape.i][shape.j] = 5;
 
     Draw();
+}
+
+function clearGhost(){
+    for(let i = 0; i<board.length;i++){
+        for(let j=0;j<board[0].length;j++){
+            if(board[i][j] === 6 || board[i][j] === 7 || board[i][j] === 8){
+                board[i][j] = 0;
+            }
+        }
+    }
 }
 
 /**
